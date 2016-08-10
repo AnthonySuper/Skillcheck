@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchUser } from '../actions.es6';
-
-
+import marked from 'marked';
 
 class User extends Component {
   constructor(props) {
@@ -15,9 +14,15 @@ class User extends Component {
       return <progress></progress>;
     }
     let { user } = this.props;
-    return <div class="user-show">
+    return <div className="user-show">
       <h1>{user.name}</h1>
+      <div className="user-bio"
+        dangerouslySetInnerHTML={this.getBio()} />
     </div>;
+  }
+
+  getBio() {
+    return {__html: marked(this.props.user.bio)};
   }
 
   componentDidMount() {
