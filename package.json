@@ -1,0 +1,32 @@
+{
+  "name": "rolldice",
+  "version": "1.0.0",
+  "description": "A website",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 0"
+  },
+  "author": "Anthony Super <anthony@noided.media> (http://anthony.noided.media)",
+  "license": "SEE LICENSE IN LICENSE",
+  "devDependencies": {},
+  "dependencies": {
+    "babel-polyfill": "^6.13.0",
+    "babel-preset-es2015": "^6.13.2",
+    "babel-preset-react": "^6.11.1",
+    "babel-preset-stage-0": "^6.5.0",
+    "babelify": "^7.3.0",
+    "browserify": "^13.1.0",
+    "browserify-incremental": "^3.1.1",
+    "j-toker": "0.0.10-beta3",
+    "jquery": "^3.1.0",
+    "react": "^15.3.0",
+    "react-dom": "^15.3.0",
+    "react-redux": "^4.4.5",
+    "react-router": "^2.6.1",
+    "redux": "^3.5.2",
+    "redux-thunk": "^2.1.0"
+  }
+}
