@@ -20,3 +20,4 @@ export function apiResponseToObject(resp) {
   data.forEach(d => o[d.id] = Object.assign({}, d.attributes, {id: d.id}));
   return o;
 }
+

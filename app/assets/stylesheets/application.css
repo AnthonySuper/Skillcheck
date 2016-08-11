@@ -11,6 +11,6 @@
  * file per style scope.
  *
  *= require_tree .
- *= require tomorrow-night-eighties.css
+ *= require pojoaque.css
  *= require_self
  */

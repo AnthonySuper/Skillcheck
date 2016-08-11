@@ -18,9 +18,11 @@ class TopBar extends Component {
       klass += " signed-in";
     }
     return <header className={klass}>
-      <h1>
-        Skillcheck
-      </h1>
+      <Link to="/">
+        <h1>
+          Skillcheck
+        </h1>
+      </Link>
       {do {
         if(this.props.currentUser) {
           <Link to={`/users/${this.props.currentUser.id}`}>
@@ -67,10 +69,7 @@ class NoUser extends React.Component {
   }
 
   render() {
-
-    console.log("Sign in form is",SignInForm);
     let { showSignIn, showSignUp } = this.state;
-    console.log("State",this.state);
     return <div>
       No user set
       <button onClick={::this.toggleSignIn}>
@@ -87,7 +86,7 @@ class NoUser extends React.Component {
           <SignUpForm onSubmit={::this.submitNew}/>;
         }
         else{ 
-          <div> Neither </div>;
+          <div></div>;
         }
       }}
     </div>
@@ -106,7 +105,7 @@ class NoUser extends React.Component {
     let o = formToObject(event.target);
     try {
       let si = await Auth.emailSignIn(o);
-      this.props.dispatch(signIn(si));
+      this.props.dispatch(signIn(Auth.user));
     }
     catch(err) {
       console.warn("Got sign in error:",err);
@@ -117,7 +116,6 @@ class NoUser extends React.Component {
     event.preventDefault();
     let o = formToObject(event.target);
     try {
-      console.log("For form object",o);
       let si = await Auth.emailSignUp(o);
       this.props.dispatch(signIn(si));
     }

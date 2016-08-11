@@ -1,12 +1,16 @@
 @import "variables";
 
-.top-bar {
+.markdown-description {
+  padding: 10px 30px;
+}
+
+.page-header {
   display: flex;
-  padding: 10px 20px;
   justify-content: space-between;
   align-items: center;
-  background-color: $color2;
+  background-color: $color3;
   color: #fff;
+  padding: 10px 20px;
 
   h1 {
     font-size: 1.2rem;
@@ -15,7 +19,5 @@
 
   a {
     color: inherit;
-    text-decoration: none;
-    font-size: 1.2rem;
   }
 }

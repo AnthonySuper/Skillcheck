@@ -21,8 +21,14 @@ export function addUsers(users) {
   };
 }
 
+export function addSkills(skills) {
+  return {
+    type: types.ADD_SKILLS,
+    skills: skills
+  };
+}
+
 export function validateToken() {
-  console.log("Dispatching validate token");
   return async function(dispatch, getState) {
     try {
       let user = await window.Auth.validateToken();
@@ -43,6 +49,30 @@ export function fetchUser(id) {
     }
     catch(err) {
       console.warn(`Could not fetch user ${id}`, err);
+    }
+  }
+}
+
+export function fetchSkills() {
+  return async function(dispatch, getState) {
+    try {
+      let data = await $.getJSON(`api/v1/skills`);
+      dispatch(addSkills(apiResponseToObject(data)));
+    }
+    catch(err) {
+      console.warn("Could not fetch skills");
+    }
+  }
+}
+
+export function fetchSkill(id) {
+  return async function(dispatch, getState) {
+    try {
+      let d = await $.getJSON(`/api/v1/skills/${id}`);
+      dispatch(addSkills(apiResponseToObject(d)));
+    }
+    catch(err) {
+      console.warn(`could not fetch skill ${id}`,err);
     }
   }
 }

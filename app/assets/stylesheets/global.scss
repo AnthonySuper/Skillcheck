@@ -1,3 +1,5 @@
+@import "variables";
+
 body {
   margin: 0;
 }
@@ -5,5 +7,7 @@ body {
 *,
 *::after,
 *::before {
+  font-family: $font-stack;
   box-sizing: border-box;
+  
 }
