@@ -1,0 +1,14 @@
+.skills-transition-enter {
+  max-height: 0;
+
+  &.skills-transition-enter-active {
+    max-height: 50px;
+    transition: max-height 500ms ease-in;
+  }
+}
+
+.skills-list {
+  li {
+    overflow: hidden;
+  }
+}

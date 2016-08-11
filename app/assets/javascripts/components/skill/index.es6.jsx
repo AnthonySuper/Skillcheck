@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { fetchSkills } from '../../actions.es6';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 class Index extends Component {
   constructor(props) {
@@ -12,7 +13,6 @@ class Index extends Component {
   }
 
   render() {
-    console.log("Props are",this.props);
     if(this.props.skills.length === 0) {
       return this.state.hasFetched ? <div>
         No skills yet, <Link to="skills/create">create one</Link>
@@ -24,7 +24,12 @@ class Index extends Component {
       </Link>
     </li>);
     return <ul className="skills-list">
-      {skills}
+      <ReactCSSTransitionGroup
+        transitionName="skills-transition"
+        transitionEnterTimeout={500}
+        transitionLeaveTimeout={500}>
+        {skills}
+      </ReactCSSTransitionGroup>
     </ul>
   }
 
@@ -35,6 +40,9 @@ class Index extends Component {
           hasFetched: true
         });
       });
+    }
+    else {
+      this.props.dispatch(fetchSkills());
     }
   }
 }
