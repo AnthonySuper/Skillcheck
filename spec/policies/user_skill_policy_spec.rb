@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe GamePolicy do
+describe UserSkillPolicy do
 
   let(:user) { User.new }
 

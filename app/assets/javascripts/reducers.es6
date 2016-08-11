@@ -21,6 +21,13 @@ export function users(state = {}, action) {
   return state;
 }
 
+export function userSkills(state = {}, action) {
+  if(action.type === types.ADD_USER_SKILLS) {
+    return {...state, ...action.userSkills};
+  }
+  return state;
+}
+
 export function currentUser(state = null, action) {
   if(action.type === types.SIGN_IN) {
     return action.user;

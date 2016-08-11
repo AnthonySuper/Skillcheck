@@ -1,5 +1,5 @@
 import * as types from './action_types.es6';
-import { apiResponseToObject } from './utils.es6';
+import { apiResponseToObject, includedToObject } from './utils.es6';
 
 export function signOut() {
   return {
@@ -28,6 +28,13 @@ export function addSkills(skills) {
   };
 }
 
+export function addUserSkills(userSkills) {
+  return {
+    type: types.ADD_USER_SKILLS,
+    userSkills: userSkills
+  };
+}
+
 export function validateToken() {
   return async function(dispatch, getState) {
     try {
@@ -46,6 +53,9 @@ export function fetchUser(id) {
     try {
       let data = await $.getJSON(`/api/v1/users/${id}`);
       dispatch(addUsers(apiResponseToObject(data)));
+      let included = data.included;
+      dispatch(addSkills(includedToObject(included, "skills")));
+      dispatch(addUserSkills(includedToObject(included, "userSkills")));
     }
     catch(err) {
       console.warn(`Could not fetch user ${id}`, err);
