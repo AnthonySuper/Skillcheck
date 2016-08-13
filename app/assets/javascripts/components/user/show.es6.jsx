@@ -20,7 +20,9 @@ class Show extends Component {
     let { user } = this.props;
     let skills = this.props.userSkills.map(u => {
       let skill = this.props.skills[u.skillId];
-      return <SkillDisplay {...u} skill={skill} key={u.id} />;
+      return <SkillDisplay {...u} 
+        skill={skill} 
+        key={u.id} />;
     });
     return <div className="user-show">
       <div className="page-header">
@@ -56,7 +58,23 @@ class Show extends Component {
       this.props.dispatch(fetchUser(this.props.id));
     }
   }
+
+  getChildContext() {
+    if(! this.props.user || ! this.props.currentUser) {
+      return {
+        canEdit: false
+      };
+    }
+    return {
+      canEdit: this.props.user.id == this.props.currentUser.id
+    };
+  }
 }
+
+Show.childContextTypes = {
+  canEdit: React.PropTypes.bool
+};
+
 
 function mapStateToProps(state, ownProps) {
   let id = ownProps.params.id;

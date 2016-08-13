@@ -31,3 +31,13 @@ export function includedToObject(included, type) {
 export function valuesOfObject(obj) {
   return Object.getOwnPropertyNames(obj).map(p => obj[p]);
 }
+
+export function putJSON(endpoint, data) {
+  return $.ajax({
+    type: "PUT",
+    url: endpoint,
+    dataType: "json",
+    contentType: "application/json",
+    data: JSON.stringify(data)
+  });
+}

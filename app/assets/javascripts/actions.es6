@@ -1,5 +1,5 @@
 import * as types from './action_types.es6';
-import { apiResponseToObject, includedToObject } from './utils.es6';
+import { apiResponseToObject, putJSON, includedToObject } from './utils.es6';
 
 export function signOut() {
   return {
@@ -83,6 +83,19 @@ export function fetchSkill(id) {
     }
     catch(err) {
       console.warn(`could not fetch skill ${id}`,err);
+    }
+  }
+}
+
+export function updateUserSkill(id, attrs) {
+  return async function(dispatch, getState) {
+    try {
+      let d = await putJSON(`/api/v1/user_skills/${id}`,
+        {user_skill: attrs});
+      dispatch(addUserSkills(apiResponseToObject(d)));
+    }
+    catch(err) {
+      console.warn("Could not update uer skill", err);
     }
   }
 }

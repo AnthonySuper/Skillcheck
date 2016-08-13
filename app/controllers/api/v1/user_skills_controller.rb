@@ -1,4 +1,4 @@
-class Api::V1::UserSkillsController < ApiController
+class Api::V1::UserSkillsController < Api::V1::ApplicationController
   before_action :load_user_skill, except: [:index, :create]
 
   def index
@@ -19,10 +19,19 @@ class Api::V1::UserSkillsController < ApiController
     end
   end
 
+  def update
+    if @user_skill.update(user_skill_params)
+      render json: @user_skill
+    else
+      render json: {errors: @user_skill.errors}, status: 401
+    end
+  end
+
 
   protected
   def load_user_skill
     @user_skill = UserSkill.find(params[:id])
+    authorize @user_skill
   end
 
   def user_skill_params

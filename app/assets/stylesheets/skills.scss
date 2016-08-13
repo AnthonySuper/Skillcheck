@@ -23,17 +23,18 @@
 .user-skill-item {
   display: flex;
   flex-direction: column;
+  border: 1px solid $color5;
 
   &.expanded {
     .skill-stub-body {
-      transition: 500ms ease-in-out;
-      max-height: 400px;
+      height: 400px;
       overflow: scroll;
     }
   }
 
   .skill-stub-body {
-    max-height: 0;
+    transition: 500ms ease-in-out;
+    height: 0;
     overflow: hidden;
   }
 }
@@ -56,4 +57,10 @@
     color: inherit;
     text-decoration: none;
   }
+}
+
+.user-skill-description-input {
+  width: calc(100% - 40px);
+  height: calc(80% - 40px);
+  margin: 20px;
 }
