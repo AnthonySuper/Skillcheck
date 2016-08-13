@@ -2,7 +2,7 @@ class Api::V1::SkillsController < ApplicationController
   before_action :load_skill, except: [:index, :create]
 
   def show
-    render json: @skill
+    render json: @skill, include: params[:include]
   end
 
   def index

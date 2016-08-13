@@ -78,7 +78,10 @@ export function fetchSkills() {
 export function fetchSkill(id) {
   return async function(dispatch, getState) {
     try {
-      let d = await $.getJSON(`/api/v1/skills/${id}`);
+      let d = await $.getJSON(`/api/v1/skills/${id}?include=users,user_skills`);
+      let inc = d.included;
+      dispatch(addUsers(includedToObject(inc, "users")));
+      dispatch(addUserSkills(includedToObject(inc, "userSkills")));
       dispatch(addSkills(apiResponseToObject(d)));
     }
     catch(err) {
