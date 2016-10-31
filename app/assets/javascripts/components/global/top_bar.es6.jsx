@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { validateToken, signIn } from '../actions.es6';
-import SubmitButton from './forms/submit_button.es6.jsx';
-import FieldHelper from './forms/field_helper.es6.jsx';
-import { formToObject } from '../utils.es6';
+import { validateToken, signIn } from '../../actions.es6';
+import SubmitButton from '../forms/submit_button.es6.jsx';
+import FieldHelper from '../forms/field_helper.es6.jsx';
+import { formToObject } from '../../utils.es6';
 import { Link } from 'react-router';
+import Navbar from './nav_bar.es6.jsx';
 
 class TopBar extends Component {
   constructor(props) {
@@ -18,21 +19,24 @@ class TopBar extends Component {
       klass += " signed-in";
     }
     return <header className={klass}>
-      <Link to="/">
-        <h1>
-          Skillcheck
-        </h1>
-      </Link>
-      {do {
-        if(this.props.currentUser) {
-          <Link to={`/users/${this.props.currentUser.id}`}>
-            {this.props.currentUser.name}
-          </Link>
-        }
-        else {
-          <NoUserConnected />
-          }}}
-        </header>
+      <div id="header-info">
+        <Link to="/">
+          <h1>
+            Skillcheck
+          </h1>
+        </Link>
+        {do {
+          if(this.props.currentUser) {
+            <Link to={`/users/${this.props.currentUser.id}`}>
+              {this.props.currentUser.name}
+            </Link>
+          }
+          else {
+            <NoUserConnected />
+            }}}
+          </div>
+      <Navbar />
+    </header>
   }
 
   componentDidMount() {

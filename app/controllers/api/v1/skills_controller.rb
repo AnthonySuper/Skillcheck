@@ -6,7 +6,10 @@ class Api::V1::SkillsController < ApplicationController
   end
 
   def index
-    render json: Skill.all
+    @skills = Skill.all
+      .includes(:user_skills)
+      .includes(:users)
+    render json: @skills
   end
 
   def create

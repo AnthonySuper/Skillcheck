@@ -41,3 +41,9 @@ export function putJSON(endpoint, data) {
     data: JSON.stringify(data)
   });
 }
+
+export function postJSON(endpoint, data) {
+  return $.post(endpoint,
+    data,
+    "json");
+}

@@ -1,5 +1,9 @@
 import * as types from './action_types.es6';
-import { apiResponseToObject, putJSON, includedToObject } from './utils.es6';
+import { apiResponseToObject, 
+  putJSON, 
+  postJSON,
+  includedToObject } from './utils.es6';
+import { hashHistory } from 'react-router';
 
 export function signOut() {
   return {
@@ -25,6 +29,13 @@ export function addSkills(skills) {
   return {
     type: types.ADD_SKILLS,
     skills: skills
+  };
+}
+
+export function addProjects(projects) {
+  return {
+    type: types.ADD_PROJECTS,
+    projects: projects
   };
 }
 
@@ -101,4 +112,29 @@ export function updateUserSkill(id, attrs) {
       console.warn("Could not update uer skill", err);
     }
   }
+}
+
+export function fetchProjects() {
+  return async function(dispatch, getState) {
+    try {
+      let d = await $.getJSON(`/api/v1/projects/`);
+      dispatch(addProjects(apiResponseToObject(d)));
+    }
+    catch(err) {
+      console.warn("Could not update projects", err);
+    }
+  };
+}
+
+export function createProject(proj) {
+  return async function(dispatch, getState) {
+    try {
+      let d = await postJSON("/projects", {project: proj});
+      dispatch(addProjects(apiResponseToObjet(d)));
+      console.log("Added project", d);
+    }
+    catch(err) {
+      console.warn("Could not create project", err);
+    }
+  };
 }

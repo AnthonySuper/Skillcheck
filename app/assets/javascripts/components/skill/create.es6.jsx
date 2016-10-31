@@ -25,7 +25,6 @@ class Create extends React.Component {
       let r = await $.post(`/api/v1/skills/`, 
         {skill: obj},
         "json");
-      console.log("Got sick data",r);
       this.props.dispatch(addSkills(apiResponseToObject(r)));
       this.context.router.push(`/skills/${r.data.id}`);
     }

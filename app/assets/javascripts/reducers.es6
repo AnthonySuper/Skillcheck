@@ -11,6 +11,13 @@ export function skills(state = {}, action) {
   return state;
 }
 
+export function projects(state = {}, action) {
+  if(action.type === types.ADD_PROJECTS) {
+    return {...state, ...action.projects};
+  }
+  return state;
+}
+
 export function users(state = {}, action) {
   if(action.type === types.ADD_USERS) {
     return {...state, ...action.users};
